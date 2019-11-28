@@ -1,0 +1,7 @@
+/target/
+/Report/
+/.settings/
+/.project
+/.classpath
+/.factorypath
+.metadata/
