@@ -60,7 +60,7 @@ public class JiraAddUserTest {
 	 * @throws IOException
 	 * @throws Exception
 	 */
-	public void test(String content,String appJobID) throws Exception {
+	public void test(String content,String appJobID,String callBackUrl) throws Exception {
 		
 		Map<String, String> inputData = new HashMap<String, String>();
 		try {
@@ -97,7 +97,6 @@ public class JiraAddUserTest {
 				}
 			}
 
-
 			Reports.startTest(tcName, "Add new User in Jira");
 			Reports.info("Running... UserDefinedTestCase(String... input)");
 			BaseUtility.jobId = inputData.get("jobId").toString();
@@ -120,7 +119,7 @@ public class JiraAddUserTest {
 			JiraPeoplePage jiraPeople = new JiraPeoplePage(driver);
 			jiraPeople.addNewUser(inputData.get("newUser").toString());
 
-			APICalls.Execute_postAPI(AppData.properties.getProperty("responseUrl"),
+			APICalls.Execute_postAPI(callBackUrl,
 					BaseUtility.getOutPut(BaseUtility.jobId, "Success", ""));
 			finishTest();
 		} catch (Exception e) {
@@ -132,14 +131,14 @@ public class JiraAddUserTest {
 					Thread.sleep(5000);
 					JiraAddUserTest.retryCount++;
 					JiraAddUserTest jiraTest = new JiraAddUserTest();
-					jiraTest.test(content, null);
+					jiraTest.test(content, null,callBackUrl);
 				}
 				if (JiraAddUserTest.retryCount >= 5 && isServerDown) {
-					APICalls.Execute_postAPI(AppData.properties.getProperty("responseUrl"),
+					APICalls.Execute_postAPI(callBackUrl,
 							BaseUtility.getOutPut(BaseUtility.jobId, "Failed", "Target System Unrechable"));
 				}
 			} else {
-				APICalls.Execute_postAPI(AppData.properties.getProperty("responseUrl"),
+				APICalls.Execute_postAPI(callBackUrl,
 						BaseUtility.getOutPut(BaseUtility.jobId, "Failed", "Script Failure"));
 			}
 			Reports.finishWithfail("TestCase case has been stopped due to exception");

@@ -31,7 +31,7 @@ public class APICalls {
 //            throw e;
 //        }
     	
-		URL url = new URL ("http://localhost:8080/api/job/updatestatus");
+		URL url = new URL (postUrl);
 		
 		System.out.println(inputJson);
 		

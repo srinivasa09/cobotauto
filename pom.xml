@@ -91,6 +91,18 @@
 					<mainClass>com.main.Initial</mainClass>
 				</configuration>
 			</plugin>
+			
+<!-- 			<plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <TestCase>com.cobot.testcases.JiraAddUserTest</TestCase>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin> -->
 
 			<!-- <plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
